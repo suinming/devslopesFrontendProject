@@ -94,7 +94,7 @@
 
 .empowering {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     background: linear-gradient(351deg, rgba(255, 255, 255, 1) 0%, rgba(250, 251, 252, 1) 100%);
     margin-bottom: var(--size-300);
 }
@@ -193,7 +193,7 @@
 
 .benefits-box-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     margin: var(--size-50) 0 var(--size-130);
 }
 
@@ -226,7 +226,7 @@
 .container.different {
     background-color: #f8fafe;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: var(--size-100);
     padding-top: var(--size-100);
     margin-bottom: var(--size-100);
@@ -307,7 +307,6 @@
 
 .video-box {
     position: relative;
-
 }
 
 .video-btn {
@@ -386,7 +385,6 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 120px;
-
 }
 
 .brands-logo-grid-wrapper img {
@@ -413,7 +411,7 @@
 
 .pricing-grid-wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 /* pricing-left*/
@@ -452,7 +450,7 @@
 
 .pricing-right {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: var(--size-30);
     justify-self: right;
 }
