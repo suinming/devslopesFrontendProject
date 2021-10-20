@@ -17,8 +17,8 @@ class Player {
     // function for player
     userPlaceSpot = function (position) {
         let row, col, isHit = false;
-        const charToNum = { A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9, J: 10 };
-        row = charToNum[position[0]]
+
+        row = numCharConverter(position[0])
         col = Number(position.substring(1))
 
         for (var i = 0; i < this.shipPosition.length; i++) {
@@ -70,14 +70,13 @@ class Player {
     // - generate random input for computer and tell player the position computer placed
     generateInput = function () {
         let row, col, boolean = false, isHit = false, computerInput
-        const numToChar = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J']
         do {
             do {
                 row = Math.floor(Math.random() * (this.boardSize + 1))
                 col = Math.floor(Math.random() * (this.boardSize + 1))
             } while (row === 0 || col === 0)
 
-            computerInput = numToChar[row - 1] + col;
+            computerInput = numCharConverter(row) + col;
 
             if (this.inputHistory.length >= 1) {
                 for (let i = 0; i < this.inputHistory.length; i++) {
@@ -112,13 +111,24 @@ class Player {
 
 // function
 
+const numCharConverter = function (input) {
+    const character = { A: 1, B: 2, C: 3, D: 4, E: 5, F: 6, G: 7, H: 8, I: 9, J: 10 };
+    if (input > 10) {
+        return 'error'
+    } else if (typeof character[input] === 'number') {
+        return character[input]
+    } else {
+        return Object.keys(character).filter(key => character[key] === input)
+    }
+
+}
+
 const generateBoard = function (boardSize) {
     const board = [];
-    const character = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"];
     const colName = ['']
 
     for (let i = 0; i < boardSize; i++) {
-        const row = [character[i]];
+        const row = [numCharConverter(i + 1)];
 
         for (let j = 0; j < boardSize; j++) {
             row.push('');
@@ -173,18 +183,6 @@ const isIntersection = function (shipPosition, currentPosition) {
 
 const placeShip = function (boardSize) {
     const shipPosition = [];
-    const char = {
-        1: "A",
-        2: "B",
-        3: "C",
-        4: "D",
-        5: "E",
-        6: "F",
-        7: "G",
-        8: "H",
-        9: "I",
-        10: "J",
-    };
     const shipSize = [2, 3, 3, 4, 5];
     for (let i = 0; i < shipSize.length; i++) {
         let direction, row, col, position;
@@ -199,9 +197,9 @@ const placeShip = function (boardSize) {
             col = pickNum(shipSize[i], boardSize);
 
             if (direction === 0) {
-                position = col.map((element) => char[row] + (element + 1).toString());
+                position = col.map((element) => numCharConverter(row) + (element + 1).toString());
             } else {
-                position = col.map((element) => char[element] + (row + 1).toString());
+                position = col.map((element) => numCharConverter(element) + (row + 1).toString());
             }
         } while (isIntersection(shipPosition, position));
 
