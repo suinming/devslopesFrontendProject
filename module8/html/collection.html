@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/reponsive.css" />
+  <script src="https://kit.fontawesome.com/09f34e56b7.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <main>
+    <!--navbar-->
+    <nav class="navbar nav" id="topNav">
+      <div class="container">
+        <button class="nav-toggler" aria-expanded="false" aria-controls="navbarDropdown">
+          <span>&#9776</span>
+        </button>
+        <div class="pokemonIcon-wrapper">
+          <img src="http://switchplayer.net/wp-content/uploads/2017/06/pokemon-820x461.png" alt="pokemonIcon">
+        </div>
+        <ul class="navbar-nav">
+          <li><a href="./collection.html" class='btn btn-primary btn-left'>collection</a></li>
+          <li><a href="#" class='btn btn-primary btn-right'>favorite</a></li>
+        </ul>
+      </div>
+    </nav>
+    <!--pokemon card-->
+    <div class="container">
+      <h2 class='sub-title'>COLLECTION</h2>
+      <div class="collection-card-container card-container"></div>
+    </div>
+    <!--favorite-->
+    <div class="favorite" data-animation='zoomInOut'>
+      <div class="container">
+        <header class="favorite-header">
+          <h3>FAVORITE PAGE</h3>
+          <i class="fas fa-times" data-close></i>
+        </header>
+      </div>
+      <div class="container">
+        <div class="favorite-card-container card-container"></div>
+      </div>
+    </div>
+  </main>
+  <script src="../js/collection.js"></script>
+  <script src="../js/function.js"></script>
+</body>
+
+</html>

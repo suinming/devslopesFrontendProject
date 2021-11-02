@@ -1,0 +1,142 @@
+/* general style*/
+
+:root {
+    /* color*/
+
+    --black: #030304;
+    --white: #fff;
+
+    /* size*/
+
+    --size-10: 0.625rem;
+    --size-12: 0.75rem;
+    --size-14: 0.875rem;
+    --size-16: 1rem;
+    --size-18: 1.125rem;
+    --size-20: 1.25rem;
+    --size-30: 1.875rem;
+    --size-40: 2.5rem;
+    --size-50: 3.125rem;
+    --size-100: 6.25rem;
+    --size-130: 8.125rem;
+    --size-150: 9.375rem;
+    --size-300: 18.75rem;
+}
+
+section,
+footer,
+header,
+main,
+nav {
+    display: block;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+}
+
+a {
+    text-decoration: none;
+    background-color: transparent;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin-top: var(--size-10);
+    margin-bottom: var(--size-10);
+}
+
+p {
+    margin-top: 0;
+}
+
+button {
+    outline: none;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+}
+
+/* container style*/
+
+.container {
+    max-width: 1140px;
+    width: 100%;
+    padding-left: var(--size-16);
+    padding-right: var(--size-16);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* button style*/
+
+.btn {
+    font-size: var(--size-10);
+    font-weight: 700;
+    max-width: var(--size-100);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    letter-spacing: 1.63px;
+    transition: 0.4s;
+    height: var(--size-50);
+    box-shadow: 0 32px 54px rgba(3, 3, 3, 0.12);
+    padding: 0 var(--size-10);
+}
+
+.btn-primary,
+.btn-primary a {
+    color: #fff;
+    background-color: var(--black);
+    border-color: var(--black);
+}
+
+.btn:not(:disabled):not(.disabled),
+button:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.round-pill {
+    border-radius: 50rem;
+}
+
+/* header style*/
+
+.header-lg {
+    font-size: 5rem;
+    letter-spacing: -2.5px;
+    line-height: 1.05;
+}
+
+.header-md {
+    font-size: 3rem;
+    letter-spacing: -2px;
+}

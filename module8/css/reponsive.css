@@ -1,0 +1,22 @@
+@media screen and (max-width: 375px) {
+    [aria-controls="navbarDropdown"] {
+        display: block;
+    }
+
+    [aria-expanded="false"]~ul {
+        display: none;
+    }
+
+    [aria-expanded="true"]~ul {
+        display: block;
+        position: absolute;
+        top: 50px;
+        right: 0;
+        width: 100%;
+        text-align: right;
+    }
+
+    [aria-expanded="true"]~ul li a {
+        margin-bottom: 20px;
+    }
+}

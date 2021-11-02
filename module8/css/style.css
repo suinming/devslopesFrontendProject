@@ -1,0 +1,158 @@
+main {
+    position: relative;
+}
+
+/* navbar style*/
+
+.pokemonIcon-wrapper {
+    max-width: 120px;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: var(--size-30);
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-nav li {
+    margin-right: 20px;
+}
+
+.btn-left {
+    transform: rotate(5deg);
+}
+
+.btn-right {
+    transform: rotate(-5deg);
+}
+
+.btn-left:hover {
+    transform: rotate(-5deg);
+}
+
+.btn-right:hover {
+    transform: rotate(5deg);
+}
+
+.navbar.sticky {
+    background-color: grey;
+    box-shadow: 0 0 20px rgba(48, 63, 100, 0.2);
+}
+
+.navbar.sticky .navbar-toggle span,
+.navbar.sticky .navbar-brand {
+    color: black;
+}
+
+.nav-toggler {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+.nav-toggler span {
+    color: black;
+    pointer-events: none;
+}
+
+[aria-controls="navbarDropdown"] {
+    display: none;
+}
+
+/* pokemon card*/
+
+.sub-title {
+    border-bottom: 1px solid black;
+}
+
+.card-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.card {
+    align-self: auto;
+    position: relative;
+    width: 200px;
+    text-align: left;
+    border: 1px solid rgb(22 28 45 / 50%);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgb(22 28 45 / 50%);
+    padding: 1rem;
+    transition: 0.4s ease-in-out;
+    margin: var(--size-10);
+}
+
+.card .fa-plus,
+.card .fa-times {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    transition: all 0.5s ease-in;
+}
+
+.card .fa-plus:hover,
+.card .fa-times:hover {
+    cursor: pointer;
+}
+
+.pokemon-imgWrapper {
+    width: 150px;
+    height: 150px;
+    margin-top: var(--size-10);
+}
+
+/* favorite page*/
+.favorite {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.35s ease-in;
+}
+
+.favorite.is-visible {
+    visibility: visible;
+    opacity: 1;
+    background: var(--white);
+    z-index: 1000;
+}
+
+.favorite-header {
+    display: flex;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.favorite-header .fa-times {
+    font-size: 1.5rem;
+    transition: all 0.5s ease-in;
+}
+
+.favorite-header .fa-times:hover {
+    transition: scale(1.1);
+    cursor: pointer;
+}
+
+[data-animation='zoomInOut'].favorite {
+    transform: scale(0.2);
+}
+
+[data-animation='zoomInOut'].favorite.is-visible {
+    transform: none;
+}
