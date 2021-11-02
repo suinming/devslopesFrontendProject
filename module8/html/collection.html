@@ -30,7 +30,14 @@
     </nav>
     <!--pokemon card-->
     <div class="container">
-      <h2 class='sub-title'>COLLECTION</h2>
+      <div class="title">
+        <h2 class='sub-title'>COLLECTION</h2>
+      <div class="sortBtn-wrapper">
+        <a href="#" class='btn btn-primary sort' data-page='collection'>SORT BY NAME(A-Z)</a>
+        <a href="#" class='btn btn-primary sort-reverse' data-page='collection'>SORT BY NAME(Z-A)</a>
+      </div>
+      </div>
+      <h2 class="pokemone-display">POKEMONE DISPLAY : </h2>
       <div class="collection-card-container card-container"></div>
     </div>
     <!--favorite-->
@@ -40,6 +47,10 @@
           <h3>FAVORITE PAGE</h3>
           <i class="fas fa-times" data-close></i>
         </header>
+        <div class="btnWarpper">
+            <a href="#" class='btn btn-primary sort' data-page='favorite'>SORT BY NAME(A-Z)</a>
+            <a href="#" class='btn btn-primary sort-reverse' data-page='favorite'>SORT BY NAME(Z-A)</a>
+          </div>
       </div>
       <div class="container">
         <div class="favorite-card-container card-container"></div>

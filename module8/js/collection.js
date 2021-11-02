@@ -26,9 +26,10 @@ closeBtn.addEventListener('click', function () {
 
 // pokemon card
 
-const pokemonAmount = 5
+const pokemonAmount = 30
 
-const createPokemonCard = function (pokemonInfo, index) {
+
+const createPokemonCard = function (pokemonInfo) {
     const container = document.querySelector('.collection-card-container.card-container')
     let pokemonId = pokemonInfo.id
     let pokemonName = pokemonInfo.name
@@ -38,7 +39,8 @@ const createPokemonCard = function (pokemonInfo, index) {
     let pokemonTotal = pokemonHp + pokemonAttack + pokemonDefense
     let imgUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemonId}.svg"`
     let card = document.createElement('div')
-    card.className = `card card-${index}`
+    card.dataset.name = pokemonName
+    card.className = `card`
     let content =
         `<i class = 'fas fa-plus'></i>
        <div class="pokemon-imgWrapper">
@@ -80,6 +82,7 @@ const collectionCardContainer = document.querySelector(`.collection-card-contain
 const favoriteCardContainer = document.querySelector(`.favorite-card-container`)
 const collectionAllCard = collectionCardContainer.childNodes
 const favoriteAllCard = favoriteCardContainer.childNodes
+const pokemonDisplay = document.querySelector('.pokemone-display')
 
 const addFavorite = function () {
     collectionAllCard.forEach(node => {
@@ -90,8 +93,10 @@ const addFavorite = function () {
             let favoriteNode = node
             favoriteNode.style.display = 'block'
             favoriteCardContainer.appendChild(favoriteNode)
+            pokemonDisplay.textContent = `POKEMONE DISPLAY : ${collectionAllCard.length}`
         })
     })
+
 }
 
 const removeFavorite = function () {
@@ -103,13 +108,61 @@ const removeFavorite = function () {
             let collectionNode = node
             collectionNode.style.display = 'block'
             collectionCardContainer.appendChild(collectionNode)
+            pokemonDisplay.textContent = `POKEMONE DISPLAY : ${collectionAllCard.length}`
         })
     })
+
 }
+
+// sort the html elements alphabetically
+
+const sortBtn = document.querySelectorAll('.sort')
+const sortReverseBtn = document.querySelectorAll('.sort-reverse')
+
+const sortHtml = function () {
+
+    sortBtn.forEach(btn => btn.addEventListener('click', function () {
+        let page = btn.dataset.page
+        let nodeArray = []
+        if (page === 'collection') {
+            collectionAllCard.forEach(node => nodeArray.push(node));
+            nodeArray.sort(comparator).forEach(element => collectionCardContainer.appendChild(element))
+
+        } else {
+            favoriteAllCard.forEach(node => nodeArray.push(node));
+            nodeArray.sort(comparator).forEach(element => favoriteCardContainer.appendChild(element))
+        }
+    }))
+
+    sortReverseBtn.forEach(btn => btn.addEventListener('click', function () {
+        let page = btn.dataset.page
+        let nodeArray = []
+        if (page === 'collection') {
+            collectionAllCard.forEach(node => nodeArray.push(node));
+            nodeArray.sort(reverseComparator).forEach(element => collectionCardContainer.appendChild(element))
+
+        } else {
+            favoriteAllCard.forEach(node => nodeArray.push(node));
+            nodeArray.sort(reverseComparator).forEach(element => favoriteCardContainer.appendChild(element))
+        }
+    }))
+}
+
+const comparator = function (a, b) {
+    return a.dataset.name < b.dataset.name ? -1
+        : a.dataset.name > b.dataset.name ? 1
+            : 0
+}
+
+const reverseComparator = function (a, b) {
+    return a.dataset.name < b.dataset.name ? 1
+        : a.dataset.name > b.dataset.name ? -1
+            : 0
+}
+
 
 const fetchData = function (num) {
     let api = `https://pokeapi.co/api/v2/pokemon?limit=${num}`
-
     fetch(api)
         .then((r) => r.json())
         .then((data) => {
@@ -126,9 +179,11 @@ const fetchData = function (num) {
                             'attack': pokemonData.stats[1].base_stat,
                             'defense': pokemonData.stats[2].base_stat,
                         }
-                        createPokemonCard(object, index)
+                        createPokemonCard(object)
                     })
+                    pokemonDisplay.textContent = `POKEMONE DISPLAY : ${data.length}`
                     addFavorite()
+                    sortHtml()
                 })
                 .catch((e) => console.log('error'));
         })
