@@ -75,10 +75,13 @@ main {
     flex-wrap: wrap;
 }
 
-
 .sort,
 .sort-reverse {
     margin: 5px;
+}
+
+.pokemon-display {
+    font-size: var(--size-20);
 }
 
 .card-container {

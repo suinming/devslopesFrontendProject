@@ -1,6 +1,22 @@
-// navbar
+// variables declaration
 
 const navButton = document.querySelector("button[aria-expanded]");
+const favoriteBtn = document.querySelector('.btn.btn-primary.btn-right')
+const favoritePage = document.querySelector('.favorite')
+const closeBtn = document.querySelector('.fa-times')
+
+const pokemonAmount = 30
+
+const collectionCardContainer = document.querySelector(`.collection-card-container`)
+const favoriteCardContainer = document.querySelector(`.favorite-card-container`)
+const collectionAllCard = collectionCardContainer.childNodes
+const favoriteAllCard = favoriteCardContainer.childNodes
+const pokemonDisplay = document.querySelector('.pokemon-display')
+
+const sortBtn = document.querySelectorAll('.sort')
+const sortReverseBtn = document.querySelectorAll('.sort-reverse')
+
+// navbar
 
 function toggleNav({ target }) {
     const expanded = target.getAttribute("aria-expanded") === "true" || false;
@@ -10,10 +26,6 @@ function toggleNav({ target }) {
 navButton.addEventListener("click", toggleNav);
 
 // open favorite page
-
-const favoriteBtn = document.querySelector('.btn.btn-primary.btn-right')
-const favoritePage = document.querySelector('.favorite')
-const closeBtn = document.querySelector('.fa-times')
 
 favoriteBtn.addEventListener('click', function () {
     favoritePage.classList.add('is-visible')
@@ -25,9 +37,6 @@ closeBtn.addEventListener('click', function () {
 })
 
 // pokemon card
-
-const pokemonAmount = 30
-
 
 const createPokemonCard = function (pokemonInfo) {
     const container = document.querySelector('.collection-card-container.card-container')
@@ -76,13 +85,7 @@ const createPokemonCard = function (pokemonInfo) {
     container.appendChild(card)
 }
 
-// add or remove favorite pokemon to the favorite page
-
-const collectionCardContainer = document.querySelector(`.collection-card-container`)
-const favoriteCardContainer = document.querySelector(`.favorite-card-container`)
-const collectionAllCard = collectionCardContainer.childNodes
-const favoriteAllCard = favoriteCardContainer.childNodes
-const pokemonDisplay = document.querySelector('.pokemone-display')
+// add or remove favorite pokemon card
 
 const addFavorite = function () {
     collectionAllCard.forEach(node => {
@@ -93,10 +96,9 @@ const addFavorite = function () {
             let favoriteNode = node
             favoriteNode.style.display = 'block'
             favoriteCardContainer.appendChild(favoriteNode)
-            pokemonDisplay.textContent = `POKEMONE DISPLAY : ${collectionAllCard.length}`
+            pokemonDisplay.textContent = `POKEMON DISPLAY : ${collectionAllCard.length}`
         })
     })
-
 }
 
 const removeFavorite = function () {
@@ -108,16 +110,12 @@ const removeFavorite = function () {
             let collectionNode = node
             collectionNode.style.display = 'block'
             collectionCardContainer.appendChild(collectionNode)
-            pokemonDisplay.textContent = `POKEMONE DISPLAY : ${collectionAllCard.length}`
+            pokemonDisplay.textContent = `POKEMON DISPLAY : ${collectionAllCard.length}`
         })
     })
-
 }
 
 // sort the html elements alphabetically
-
-const sortBtn = document.querySelectorAll('.sort')
-const sortReverseBtn = document.querySelectorAll('.sort-reverse')
 
 const sortHtml = function () {
 
@@ -160,6 +158,7 @@ const reverseComparator = function (a, b) {
             : 0
 }
 
+// fetch data from the pokemon API
 
 const fetchData = function (num) {
     let api = `https://pokeapi.co/api/v2/pokemon?limit=${num}`
@@ -181,7 +180,7 @@ const fetchData = function (num) {
                         }
                         createPokemonCard(object)
                     })
-                    pokemonDisplay.textContent = `POKEMONE DISPLAY : ${data.length}`
+                    pokemonDisplay.textContent = `POKEMON DISPLAY : ${data.length}`
                     addFavorite()
                     sortHtml()
                 })
@@ -190,6 +189,7 @@ const fetchData = function (num) {
         .catch((e) => console.log('error'));
 }
 
+// execute the function 
 
 fetchData(pokemonAmount)
 
