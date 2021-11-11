@@ -29,11 +29,11 @@ navButton.addEventListener("click", toggleNav);
 
 favoriteBtn.addEventListener('click', function () {
     favoritePage.classList.add('is-visible')
-    removeFavorite()
+    addRemoveFavorite()
 })
 closeBtn.addEventListener('click', function () {
     favoritePage.classList.remove('is-visible')
-    addFavorite()
+    addRemoveFavorite('add')
 })
 
 // pokemon card
@@ -87,75 +87,66 @@ const createPokemonCard = function (pokemonInfo) {
 
 // add or remove favorite pokemon card
 
-const addFavorite = function () {
-    collectionAllCard.forEach(node => {
-        node.firstChild.addEventListener('click', function () {
-            node.firstChild.classList.remove('fa-plus')
-            node.firstChild.classList.add('fa-times')
+const addRemoveFavorite = (status) => {
+    let card = status === 'add' ? collectionAllCard : favoriteAllCard
+    card.forEach(node => {
+        node.firstChild.addEventListener('click', () => {
+            if (status === 'add') {
+                node.firstChild.classList.remove('fa-plus')
+                node.firstChild.classList.add('fa-times')
+            } else {
+                node.firstChild.classList.remove('fa-times')
+                node.firstChild.classList.add('fa-plus')
+            }
             node.style.display = 'none'
-            let favoriteNode = node
-            favoriteNode.style.display = 'block'
-            favoriteCardContainer.appendChild(favoriteNode)
+            let tempNode = node
+            tempNode.style.display = 'block'
+            if (status === 'add') {
+                favoriteCardContainer.appendChild(tempNode)
+            } else {
+                collectionCardContainer.appendChild(tempNode)
+            }
             pokemonDisplay.textContent = `POKEMON DISPLAY : ${collectionAllCard.length}`
         })
-    })
-}
 
-const removeFavorite = function () {
-    favoriteAllCard.forEach(node => {
-        node.firstChild.addEventListener('click', function () {
-            node.firstChild.classList.remove('fa-times')
-            node.firstChild.classList.add('fa-plus')
-            node.style.display = 'none'
-            let collectionNode = node
-            collectionNode.style.display = 'block'
-            collectionCardContainer.appendChild(collectionNode)
-            pokemonDisplay.textContent = `POKEMON DISPLAY : ${collectionAllCard.length}`
-        })
     })
 }
 
 // sort the html elements alphabetically
 
 const sortHtml = function () {
+    let btnArr = [sortBtn, sortReverseBtn]
+    btnArr.forEach((btn, index) => {
+        let status = index === 0 ? 1 : -1
+        btn.forEach(btn => btn.addEventListener('click', () => {
+            let page = btn.dataset.page
+            let nodeArray = []
+            if (page === 'collection') {
+                collectionAllCard.forEach(node => nodeArray.push(node));
+                nodeArray.sort((a, b, num = status) => {
+                    if (a.dataset.name < b.dataset.name) {
+                        return -1 * num
+                    } else if (a.dataset.name > b.dataset.name) {
+                        return 1 * num
+                    } else {
+                        return 0
+                    }
+                }).forEach(element => collectionCardContainer.appendChild(element))
 
-    sortBtn.forEach(btn => btn.addEventListener('click', function () {
-        let page = btn.dataset.page
-        let nodeArray = []
-        if (page === 'collection') {
-            collectionAllCard.forEach(node => nodeArray.push(node));
-            nodeArray.sort(comparator).forEach(element => collectionCardContainer.appendChild(element))
-
-        } else {
-            favoriteAllCard.forEach(node => nodeArray.push(node));
-            nodeArray.sort(comparator).forEach(element => favoriteCardContainer.appendChild(element))
-        }
-    }))
-
-    sortReverseBtn.forEach(btn => btn.addEventListener('click', function () {
-        let page = btn.dataset.page
-        let nodeArray = []
-        if (page === 'collection') {
-            collectionAllCard.forEach(node => nodeArray.push(node));
-            nodeArray.sort(reverseComparator).forEach(element => collectionCardContainer.appendChild(element))
-
-        } else {
-            favoriteAllCard.forEach(node => nodeArray.push(node));
-            nodeArray.sort(reverseComparator).forEach(element => favoriteCardContainer.appendChild(element))
-        }
-    }))
-}
-
-const comparator = function (a, b) {
-    return a.dataset.name < b.dataset.name ? -1
-        : a.dataset.name > b.dataset.name ? 1
-            : 0
-}
-
-const reverseComparator = function (a, b) {
-    return a.dataset.name < b.dataset.name ? 1
-        : a.dataset.name > b.dataset.name ? -1
-            : 0
+            } else {
+                favoriteAllCard.forEach(node => nodeArray.push(node));
+                nodeArray.sort((a, b, num = status) => {
+                    if (a.dataset.name < b.dataset.name) {
+                        return -1 * num
+                    } else if (a.dataset.name > b.dataset.name) {
+                        return 1 * num
+                    } else {
+                        return 0
+                    }
+                }).forEach(element => favoriteCardContainer.appendChild(element))
+            }
+        }))
+    })
 }
 
 // fetch data from the pokemon API
@@ -181,7 +172,7 @@ const fetchData = function (num) {
                         createPokemonCard(object)
                     })
                     pokemonDisplay.textContent = `POKEMON DISPLAY : ${data.length}`
-                    addFavorite()
+                    addRemoveFavorite('add')
                     sortHtml()
                 })
                 .catch((e) => console.log('error'));
