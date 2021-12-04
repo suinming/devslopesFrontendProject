@@ -124,7 +124,7 @@
 /* minimal months to be debt free */
 
 .response-wrapper {
-  display: none;
+  display: block;
   color: grey;
   background-color: #ffcc80;
   border-radius: 10px;

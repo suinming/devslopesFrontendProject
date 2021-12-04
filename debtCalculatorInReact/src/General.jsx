@@ -6,8 +6,10 @@ class General extends React.Component{
         super()
         this.state = {
           totalLoan:'',
-          balance:'',
           interestRate:'',
+          month:'',
+          minimalPayment:'',
+          balance:'',
           userPayment:'',
           payment:[],
          }
@@ -19,30 +21,25 @@ class General extends React.Component{
 
    handleNormalPayment = (e) => {
        e.preventDefault()
-       const block = document.querySelector('.response-wrapper')
-       const month = document.querySelector('.time')
-       const minimalPayment = document.querySelector('.mini-payment-number')
        let totalLoan = Number(this.state.totalLoan)
        let interestRate = Number(this.state.interestRate) * 0.01
        let interest = totalLoan * interestRate / 12
        let principle = totalLoan * 0.01
        this.setState({
+          month:Math.ceil( totalLoan / (principle + interest) ),
+          minimalPayment:(principle + interest).toFixed(2),
           balance:totalLoan
        })
-       month.textContent = Math.ceil( totalLoan / (principle + interest) )
-       block.style.display = 'block'
-       minimalPayment.textContent = (principle + interest).toFixed(2)
    }
 
    handlePayment = (e) => {
       e.preventDefault()
-      const minimalPayment = document.querySelector('.mini-payment-number')
       let userPayment = Number((this.state.userPayment))
       let balance = Number((this.state.balance))
       let interestRate = Number(this.state.interestRate) * 0.01
       let interest = Number((balance * interestRate / 12).toFixed(2))
       let principle = Number((balance * 0.01).toFixed(2))
-      let principlePayment,newBalance,paymentArr = []
+      let principlePayment,newBalance 
       
       if(userPayment < interest + principle){
          alert('payment should be more than interest plus principle payment!!')
@@ -58,18 +55,19 @@ class General extends React.Component{
         if(newBalance <= 0){
            newBalance = 0
            alert('You are debt free!!')
-           minimalPayment.textContent = 0
+           this.setState({minimalPayment : 0})
         } else{
-           minimalPayment.textContent = (interest + principle).toFixed(2)
+          this.setState({minimalPayment : (interest + principle).toFixed(2)})
         }
-        paymentArr = [balance, principlePayment, newBalance]
 
-        this.setState((state) => 
-           ({payment: [...state.payment,paymentArr],
-             balance: newBalance,
-             userPayment:''
-            }))
-
+         this.setState({
+           payment:
+            [...this.state.payment,
+            {balance:balance,principlePayment:principlePayment,newBalance:newBalance}
+            ],
+           userPayment:'',
+           balance:newBalance,
+          })
       }
    }
 
@@ -78,7 +76,8 @@ class General extends React.Component{
       this.setState(
          {
            totalLoan:'',
-          interestRate:'', 
+           interestRate:'', 
+           month:''
          }
       )
       
@@ -107,9 +106,13 @@ class General extends React.Component{
               <button className='btn btn-primary' onClick={this.handleNormalPayment}>Submit</button>
             </div>
           </div>
+          {this.state.month ?
           <div className="response-wrapper">
-            It will take <span className='time'></span> months of normal payments to be debt free
+            It will take <span className='time'>{this.state.month}</span> months of normal payments to be debt free
           </div>
+          : null
+          }
+          
         </form>
         {/* make a payment*/}
         <form className='container' onSubmit={this.handlePayment}>
@@ -118,7 +121,12 @@ class General extends React.Component{
             <div className='minimal-payment'>
               <span>Minimal payment</span>
               <br />
-              <div className='to-right'>$<span className='mini-payment-number'></span> </div>
+              <div className='to-right'>$
+              <span className='mini-payment-number'>{
+                this.state.minimalPayment ? this.state.minimalPayment:
+                null
+              }</span> 
+              </div>
             </div>
             <input name='userPayment' type="text" className='form__field' placeholder='Payment' 
             onChange={this.handleChange} value={this.state.userPayment} required/>
@@ -128,7 +136,7 @@ class General extends React.Component{
           </div>
         </form>
         <div className='container history'>
-             <PaymentList paymentArr={this.state.payment}/>
+             <PaymentList payment={this.state.payment}/>
         </div>
       </div>
       )

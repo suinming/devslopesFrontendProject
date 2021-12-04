@@ -3,19 +3,19 @@ import React from 'react';
 class PaymentList extends React.Component{
 
    render(){
-       const {paymentArr} = this.props
+       const {payment} = this.props
        return(
-           paymentArr.map((row,index) => {
+           payment.map((obj,index) => {
              return(
              <div className="row" key={index}>
               <div className="item">Balance <br />
-                <span>{row[0]}</span>
+                <span>{obj.balance}</span>
               </div>
               <div className="item">Principle Payment <br />
-                <span>{row[1]}</span>
+                <span>{obj.principlePayment}</span>
               </div>
               <div className="item">New balance <br />
-                <span>{row[2]}</span>
+                <span>{obj.newBalance}</span>
               </div>
             </div>
               )
