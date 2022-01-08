@@ -1,0 +1,20 @@
+input[type='submit'] {
+    background: red;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid red;
+}
+
+input[type='submit']:hover {
+    cursor: pointer;
+}
+
+input[value='Sign up with FACEBOOK'] {
+    background: #3b5998;
+    border: 1px solid #3b5998;
+}
+
+.btn-wrapper {
+    text-align: center;
+}

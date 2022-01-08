@@ -1,0 +1,43 @@
+.row {
+    margin-bottom: 40px;
+}
+
+.row span {
+    display: inline-block;
+    width: 180px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.row .relativeForError {
+    display: inline-block;
+    position: relative;
+    width: 58%;
+}
+
+.row input {
+    max-width: 100%;
+    width: 100%;
+    border: 1px solid rgb(162, 159, 159);
+    border-radius: 5px;
+    padding: 10px;
+    line-height: 1.2;
+}
+
+.radioOption {
+    margin-bottom: 15px;
+    margin-right: 20px;
+}
+
+.radioText {
+    font-weight: 700;
+}
+
+.error {
+    position: absolute;
+    font-size: 14px;
+    color: red;
+    top: 40px;
+    left: 10px;
+}

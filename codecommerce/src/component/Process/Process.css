@@ -1,0 +1,32 @@
+.flowChart {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+}
+
+.circle,
+.circleGray {
+    color: white;
+    background: black;
+    font-weight: 700;
+    height: 100px;
+    line-height: 100px;
+    width: 100px;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.line,
+.lineGray {
+    width: 100px;
+    height: 10px;
+    color: black;
+    background: black;
+    margin: 0;
+}
+
+.circleGray,
+.lineGray {
+    color: white;
+    background: gray;
+}

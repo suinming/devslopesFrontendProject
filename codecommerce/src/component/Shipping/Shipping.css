@@ -1,0 +1,91 @@
+/* shipping form*/
+
+.shippingForm {
+    width: 800px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 15px;
+    margin-right: 10px;
+}
+
+.shippingInfoTitle,
+.shippingMethod {
+    font-size: 25px;
+    margin-bottom: 80px;
+}
+
+.shippingMethod {
+    margin-bottom: 20px;
+}
+
+.row {
+    margin-bottom: 40px;
+}
+
+.row span {
+    display: inline-block;
+    width: 180px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.row input {
+    max-width: 58%;
+    width: 58%;
+    border: 1px solid rgb(162, 159, 159);
+    border-radius: 5px;
+    padding: 10px;
+    line-height: 1.2;
+}
+
+.row .inlineSpan {
+    width: 100px;
+}
+
+.row .phoneShort {
+    width: 10%;
+    margin-right: 30px;
+}
+
+.row .phoneLong {
+    width: 20%;
+}
+
+.row select {
+    padding: 8px;
+    margin-right: 50px;
+}
+
+.radioOption {
+    margin-bottom: 15px;
+    margin-right: 20px;
+}
+
+.radioText {
+    font-weight: 700;
+}
+
+.backBtn {
+    border: 1.8px solid black;
+    font-weight: 700;
+    color: black;
+    background: white;
+    padding: 6px 10px;
+    margin-top: 20px;
+}
+
+.backBtn:hover {
+    cursor: pointer;
+    color: white;
+    background: black;
+}
+
+/* shipping summary*/
+
+.shippingSummary {
+    max-width: 200px;
+    max-height: 300px;
+    width: 100%;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 5px;
+}

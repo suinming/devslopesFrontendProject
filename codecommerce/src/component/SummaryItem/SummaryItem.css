@@ -1,0 +1,33 @@
+/* item*/
+
+.summaryItem {
+    display: flex;
+    margin-bottom: 18px;
+}
+
+.imgWrapper {
+    max-width: 60px;
+    margin-right: 10px;
+}
+
+.imgWrapper>img {
+    width: 100%;
+}
+
+.itemInfo {
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
+        rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.itemInfo h6 {
+    margin: 0;
+    margin-bottom: 5px;
+}
+
+.boldTitle {
+    font-weight: 500;
+    font-size: 5px;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1000px;
+    margin: 40px auto;
+}
+
+/* cart*/
+
+.cart {
+    max-width: 700px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 40px 30px;
+}
+
+.colName {
+    display: flex;
+    justify-content: space-between;
+}
+
+.colName>:first-child {
+    margin-right: 210px;
+}
+
+.colName>:last-child {
+    margin-right: 20px;
+}
