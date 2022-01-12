@@ -2,6 +2,7 @@ import React from 'react'
 import InputBase from '../InputBase/InputBase'
 import './Login.css'
 import { emailValidation, passwordValidation} from '../validation'
+import { checkErrorBeforeSave } from '../../helper/checkErrorBeforeSave'
 
 const INIT_USER_LOGIN = {
     email:'',
@@ -58,32 +59,15 @@ class Login extends React.Component{
 
     handleBlur = ({target:{name,value}}) => this.handleValidation(name,value)
 
-    checkErrorBeforeSave = () => {
-        const {userData, error} = this.state
-        let errorValue = {}
-        let isError = false
-        Object.keys(userData).forEach( val => {
-            let errorKey = val + 'Error'
-            if(!userData[val].length || error[errorKey]){ 
-               if(!userData[val].length){
-                    errorValue = {...errorValue,[`${val}Error`]:'Required'}    
-                } else{
-                    errorValue = {...errorValue,[`${val}Error`]:error[`${val}Error`]}  
-               }
-              isError = true
-            }
-        })
-        
-        this.setState({'error':errorValue}) 
-        return isError
-    }
-
     handleSubmit = (e) => {
-        const isError = this.checkErrorBeforeSave()
-        if(!isError){
+        const errorValue = checkErrorBeforeSave(this.state)
+
+        if(Object.keys(errorValue).length === 0){
             this.setState({
                 userData:INIT_USER_LOGIN,
             }, this.props.handleSubmit)
+        } else{
+            this.setState({ 'error': errorValue })
         }
     }
 
@@ -94,7 +78,7 @@ class Login extends React.Component{
         ]
         
         return(
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 {loginData.map(item => (
                     <InputBase 
                         placeHolder={item.label}
@@ -118,11 +102,11 @@ class Login extends React.Component{
                     ))
                 }
                 {/* submit button*/}
-                <InputBase name='login' type='submit' value='Login' onClick={this.handleSubmit}></InputBase>
+                <InputBase name='login' type='submit' value='Login'></InputBase>
                 <div className='btn-wrapper fbSignIn'>
                     <InputBase type="submit" value='Sign up with FACEBOOK' />
                 </div>
-            </div>
+            </form>
         )
     }
 }

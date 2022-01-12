@@ -2,6 +2,7 @@ import React from 'react'
 import './Signup.css'
 import InputBase from '../InputBase/InputBase'
 import { emailValidation, passwordValidation, onlyStringValidation, samePassword, postcodeValidation} from '../validation'
+import { checkErrorBeforeSave } from '../../helper/checkErrorBeforeSave'
 
 const INIT_USER_CREATEACCOUNT = {
     email:'',
@@ -101,33 +102,15 @@ class Signup extends React.Component{
 
     handleBlur = ({target:{name,value}}) => this.handleValidation(name,value)
 
-    checkErrorBeforeSave = () => {
-        const {userData, error} = this.state
-        let errorValue = {}
-        let isError = false
-        Object.keys(userData).forEach( val => {
-            let errorKey = val + 'Error'
-            if(!userData[val].length || error[errorKey]){ 
-               if(!userData[val].length){
-                    errorValue = {...errorValue,[`${val}Error`]:'Required'}    
-                } else{
-                    errorValue = {...errorValue,[`${val}Error`]:error[`${val}Error`]}  
-               }
-              isError = true
-            }
-        })
-        
-        this.setState({'error':errorValue}) 
-        return isError
-    }
-
     handleSubmit = (e) => {
-        const isError = this.checkErrorBeforeSave()
-        if(!isError){
+        const errorValue = checkErrorBeforeSave(this.state)
+
+        if(Object.keys(errorValue).length === 0){
             this.setState({
                 userData:INIT_USER_CREATEACCOUNT,
-                toNextPage : true,
-            }, () => this.props.handleSubmit)   
+            }, this.props.handleSubmit)
+        } else{
+            this.setState({ 'error': errorValue })
         }
     }
 
