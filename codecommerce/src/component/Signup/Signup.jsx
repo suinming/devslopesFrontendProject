@@ -141,7 +141,7 @@ class Signup extends React.Component{
                 {label:'postcode', name:'postcode', type:'text', error:'postcodeError'},
             ]
         return(
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 {createAccountData.map(item => (
                     <InputBase 
                         placeHolder={item.label}
@@ -165,11 +165,11 @@ class Signup extends React.Component{
                     ))
                 }
                 {/* submit button*/}
-                <InputBase name='submit' type='submit' value='Submit' onClick={this.handleSubmit}></InputBase>
+                <InputBase name='submit' type='submit' value='Submit'></InputBase>
                 <div className='btn-wrapper fbSignIn'>
                     <InputBase type="submit" value='Sign up with FACEBOOK' />
                 </div>
-            </div>
+            </form>
         )
     }
 }
