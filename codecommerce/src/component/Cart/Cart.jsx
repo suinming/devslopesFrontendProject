@@ -103,13 +103,9 @@ class Cart extends React.Component{
                     </div>
                     {itemData.map( (item,index) => (
                         <Item 
-                        imgUrl = {item.imgUrl}
-                        name = {item.name} 
-                        price = {item.price}
-                        size = {item.size}
-                        color = {item.color}
-                        pushElementToArr = {this.pushElementToArr}
+                        itemInfo = {item}
                         index = {index}
+                        pushElementToArr = {this.pushElementToArr}
                         />
                     ))}
                     </div>
