@@ -23,26 +23,26 @@ class Item extends React.Component{
     handleSelect = e =>{
         this.setState({ 
             quantity: Number(e.target.value),
-            totalPrice: (Number(e.target.value) * this.props.price).toFixed(2)
+            totalPrice: (Number(e.target.value) * this.props.itemInfo.price).toFixed(2)
         }, () => {this.props.pushElementToArr(this.state.totalPrice,this.state.quantity,this.props.index)});
     }
 
     render(){
-        const {imgUrl, name, price, size, color} = this.props
+        const {itemInfo} = this.props
         return(
             this.state.itemDisplay && 
             (<div className='itemWrapper'>
                 <div className="product">
                     <div className="imgWrapper">
-                        <img src={imgUrl} alt="productImg" />
+                        <img src={itemInfo.imgUrl} alt="productImg" />
                     </div>
                     <div className="content">
-                        <h6>{name}</h6>
-                        <div> <span className='boldTitle'>COLOR :</span> {color}</div>
-                        <div> <span className='boldTitle'>SIZE : </span> {size}</div>
+                        <h6>{itemInfo.name}</h6>
+                        <div> <span className='boldTitle'>COLOR :</span> {itemInfo.color}</div>
+                        <div> <span className='boldTitle'>SIZE : </span> {itemInfo.size}</div>
                     </div>
                 </div>
-                <div className="price">{price}</div>
+                <div className="price">{itemInfo.price}</div>
                 <div className="quantity">
                     <select name="quantity" id="" onChange={this.handleSelect}>
                         <option ></option>
