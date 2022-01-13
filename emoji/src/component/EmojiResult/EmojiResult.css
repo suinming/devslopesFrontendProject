@@ -1,0 +1,12 @@
+.resultWrapper {
+    max-height: 480px;
+    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    margin-top: 3px;
+}
+
+.resultWrapper::-webkit-scrollbar {
+    width: 0;
+    background-color: transparent;
+}

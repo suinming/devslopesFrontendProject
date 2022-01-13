@@ -1,0 +1,23 @@
+.row {
+    position: relative;
+    width: 80%;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 0px auto;
+    padding: 10px;
+}
+
+.row:hover {
+    background: #d3d3d3;
+    cursor: pointer;
+}
+
+.copyMessage {
+    display: none;
+}
+
+.row:hover .copyMessage {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+}
