@@ -18,4 +18,7 @@ add it to your project.
 6.A user can click a row and copy to the emoji to their clipboard (i.e. a user 
 clicks the row, it copies the emoji to their clipboard and they can paste it into 
 a document).
+  
+![image](https://user-images.githubusercontent.com/86294140/149264675-3e47dfda-73d0-45b1-ab65-07fc5b548cb6.png)
+
 
