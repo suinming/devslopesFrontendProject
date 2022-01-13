@@ -6,8 +6,7 @@
 <EmojiResults>
 <EmojiRow>
 
-2.Download the json file attached to this lesson for a list of emojis and 
-add it to your project.
+2.Download the json file for a list of emojis and add it to your project.
 
 3.The list should show a maximum of 20 results
 
