@@ -8,3 +8,6 @@
 3. user can switch the degree between celsius and fahrenhiet
 4. user can switch the wind speed between mph and kph 
 
+![image](https://user-images.githubusercontent.com/86294140/150474654-fdc1a584-7c30-4f24-a238-087a92c6d62d.png)
+
+
