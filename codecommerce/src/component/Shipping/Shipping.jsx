@@ -167,10 +167,10 @@ class Shipping extends React.Component{
             {type:'radio', value:'standard', info:'Standard Delivery in 4-6 business Days - Free '},
             {type:'radio', value:'express', info:'Express - Delivery in 2-3 business Days - $ 5.00'},
         ]
-        const {itemData, totalPrice, discount} = this.props
+        const {homepageData, itemData, totalPrice, discount} = this.props
 
             if(this.state.toPrevPage){
-                return(<Cart/>)
+                return(<Cart itemData = {homepageData}/>)
             } else if(this.state.toNextPage){
                 return(<PaymentInfo
                         userData = {this.state.userData}

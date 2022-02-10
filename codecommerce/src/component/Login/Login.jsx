@@ -9,6 +9,8 @@ const INIT_USER_LOGIN = {
     password:'',
 }
 
+
+
 class Login extends React.Component{
     constructor(props){
         super(props)
@@ -78,6 +80,7 @@ class Login extends React.Component{
         ]
         
         return(
+            <>
             <form onSubmit={this.handleSubmit}>
                 {loginData.map(item => (
                     <InputBase 
@@ -107,6 +110,7 @@ class Login extends React.Component{
                     <InputBase type="submit" value='Sign up with FACEBOOK' />
                 </div>
             </form>
+            </>
         )
     }
 }

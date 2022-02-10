@@ -5,14 +5,22 @@
     margin-bottom: 18px;
 }
 
-.imgWrapper {
+/* .imgWrapper {
     max-width: 60px;
     margin-right: 10px;
 }
 
 .imgWrapper>img {
     width: 100%;
+} */
+
+.summaryItem .imgWrapper,
+.summaryItem img {
+    width: 100%;
+    max-width: 100%;
+    height: 100px;
 }
+
 
 .itemInfo {
     box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px,
@@ -26,8 +34,9 @@
     margin-bottom: 5px;
 }
 
-.boldTitle {
+.itemInfo .boldTitle {
     font-weight: 500;
     font-size: 5px;
     margin-bottom: 5px;
+    text-decoration: underline;
 }

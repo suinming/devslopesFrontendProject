@@ -2,7 +2,7 @@ import React from 'react'
 import './SignupLogin.css'
 import Login from '../Login/Login'
 import Signup from '../Signup/Signup'
-import Cart from '../Cart/Cart'
+import Homepage from '../Homepage/Homepage'
 
 class SignupLogin extends React.Component{
     constructor(){
@@ -38,7 +38,7 @@ class SignupLogin extends React.Component{
 
         return(
             (toNextPage ? 
-            <Cart />:
+            <Homepage />:
             <div className='wrapper'>
                  
                     <div className='formSelection' >

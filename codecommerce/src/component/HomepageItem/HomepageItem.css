@@ -1,0 +1,37 @@
+.card {
+    width: 210px;
+    text-align: left;
+    border: 1px solid rgb(22 28 45 / 50%);
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgb(22 28 45 / 50%);
+    padding: 15px;
+    transition: 0.4s ease-in-out;
+    margin: 5px;
+}
+
+.card:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.imgWrapper,
+img {
+    width: 100%;
+    max-width: 100%;
+    height: 160px;
+}
+
+.imgWrapper {
+    margin-bottom: 10px;
+}
+
+.name,
+.categories,
+.inventory,
+.price {
+    margin-bottom: 5px;
+}
+
+.card .subTitle {
+    font-weight: 500;
+}

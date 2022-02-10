@@ -29,17 +29,19 @@ class Item extends React.Component{
 
     render(){
         const {itemInfo} = this.props
+        const img = `/img/${itemInfo.categories}/${itemInfo.name}.jpg`
+        
         return(
             this.state.itemDisplay && 
-            (<div className='itemWrapper'>
+            (<div className='CartItemWrapper'>
                 <div className="product">
                     <div className="imgWrapper">
-                        <img src={itemInfo.imgUrl} alt="productImg" />
+                        <img src={img} alt="product" />
                     </div>
                     <div className="content">
                         <h6>{itemInfo.name}</h6>
-                        <div> <span className='boldTitle'>COLOR :</span> {itemInfo.color}</div>
-                        <div> <span className='boldTitle'>SIZE : </span> {itemInfo.size}</div>
+                        <div> <span className='boldTitle'>CATEGORIES </span><br /> {itemInfo.categories}</div>
+                        <div> <span className='boldTitle'>INVENTORY  </span><br /> {itemInfo.inventory}</div>
                     </div>
                 </div>
                 <div className="price">{itemInfo.price}</div>

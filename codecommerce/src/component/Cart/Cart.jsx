@@ -5,16 +5,9 @@ import Summary from '../Summary/Summary'
 import './Cart.css'
 
 class Cart extends React.Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
-            itemData:[
-            {imgUrl:'https://cdn.clothingshoponline.com/Images/Color/19817_f_fm.jpg',name:'Heavyweight Hooded Sweatshirt', price:22.04, size:'M', color:'White', },
-            {imgUrl:'https://cdn.clothingshoponline.com/Images/Color/19979_f_fm.jpg',name:'SweatPants', price:11.15, size:'S', color:'Ash', },
-            {imgUrl:'https://cdn.clothingshoponline.com/Images/Color/52352_f_fm.jpg',name:'Softstyle® T-Shirt', price:3.5, size:'M', color:' Carolina Blue', },
-            {imgUrl:'https://cdn.clothingshoponline.com/Images/Color/17673_f_fm.jpg',name:'Unisex Jersey Long Sleeve Tee', price:8.49, size:'L', color:'Heather Navy', },
-            {imgUrl:'https://cdn.clothingshoponline.com/Images/Color/17763_f_fm.jpg',name:'Ultra Cotton® Long Sleeve T-Shirt', price:6.21, size:'XL', color:'Gold', },
-            ],
             priceArr: [],
             quantityArr:[],
             totalPrice:0,
@@ -54,42 +47,45 @@ class Cart extends React.Component{
     handlePageFinished = () => {
         /* organized data*/
         let selectedItemIndex, selectedItem, selectedPriceArr, selectedQuantityArr;
-        let itemData = [] 
+        let data = [] 
+        const {priceArr, quantityArr} = this.state
 
-        selectedItemIndex = (this.state.priceArr).map((item,index) => item === null? null : index)
-                        .filter(item => item!==null)
+        selectedItemIndex = (priceArr).map((item,index) => item === null? null : index)
+                        .filter(item => item !== null)
         
-                        selectedItem = (this.state.itemData).map((item,index) => selectedItemIndex.includes(index) ? item : null)
+        selectedItem = (this.props.itemData).map((item,index) => selectedItemIndex.includes(index) ? item : null)
                     .filter(item => item!==null)
         
-        selectedPriceArr = (this.state.priceArr).filter(item => item !== null )
+        selectedPriceArr = priceArr.filter(item => item !== null )
         
-        selectedQuantityArr = (this.state.quantityArr).filter(item => item !== null )
+        selectedQuantityArr = quantityArr.filter(item => item !== null )
 
         for (let i = 0; i < selectedQuantityArr.length; i++) {
             let tempObject = {item:null, price:null, quantity:null}
             tempObject.item = selectedItem[i]
             tempObject.price = selectedPriceArr[i]
             tempObject.quantity = selectedQuantityArr[i]
-            itemData.push(tempObject)
+            data.push(tempObject)
         }
 
         if(this.state.totalPrice !== 0){
             this.setState({
                 isPageFinished: true,
                 toNextPage:true,
-                itemData:itemData,
+                data:data,
             })
         }
     }
 
     render(){    
         const {totalPrice, discount, status, isPageFinished,
-            toNextPage, itemData, quantityArr} = this.state
+            toNextPage, quantityArr, data} = this.state
+        const {itemData} = this.props
         return(
             (toNextPage ? 
             <Shipping 
-            itemData = {itemData} 
+            homepageData = {itemData}
+            itemData = {data} 
             totalPrice = {totalPrice}
             discount = {discount}
             />:
@@ -108,7 +104,7 @@ class Cart extends React.Component{
                         pushElementToArr = {this.pushElementToArr}
                         />
                     ))}
-                    </div>
+                </div>
                 <Summary
                 itemData={null}
                 totalPrice = {totalPrice}

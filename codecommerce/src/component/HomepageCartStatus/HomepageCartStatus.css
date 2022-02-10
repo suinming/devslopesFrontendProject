@@ -1,0 +1,47 @@
+.cartStatus {
+
+    max-width: 280px;
+    width: 100%;
+    max-height: 600px;
+    text-align: center;
+    overflow: hidden;
+    overflow-y: scroll;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px,
+        rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    padding: 5px;
+}
+
+.cartStatus h3 {
+    margin: 0;
+}
+
+/* button */
+.goToCart {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 0 18px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+.goToCart:hover {
+    background-color: #fff;
+}
+
+.goToCart:active {
+    box-shadow: #422800 2px 2px 0 0;
+    transform: translate(2px, 2px);
+}

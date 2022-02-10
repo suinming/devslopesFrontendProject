@@ -1,0 +1,12 @@
+.searchResultContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.colName {
+    font-size: 25px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}

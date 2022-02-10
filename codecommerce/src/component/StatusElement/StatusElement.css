@@ -1,0 +1,49 @@
+.itemWrapper {
+    display: flex;
+    max-width: 250px;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+}
+
+/* left section*/
+
+.itemWrapper .StatusleftSection {
+    width: 100px;
+    /* height: 100px; */
+    margin-right: 5px;
+}
+
+.itemWrapper .StatusleftSection img {
+    object-fit: contain;
+}
+
+/* right section*/
+
+.itemWrapper .StatusrightSection {
+    width: 100%;
+}
+
+.itemWrapper .StatusrightSection span {
+    display: inline-block;
+}
+
+.itemWrapper .StatusrightSection>div {
+    margin-bottom: 5px;
+}
+
+.itemWrapper .StatusrightSection .name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    border-bottom: solid;
+    padding: 5px;
+}
+
+.itemWrapper .StatusrightSection .price,
+.itemWrapper .StatusrightSection .inventory {
+    display: flex;
+    justify-content: space-between;
+    width: 100px;
+}
